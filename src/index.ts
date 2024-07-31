@@ -30,7 +30,7 @@ const errorHandler: express.ErrorRequestHandler = (err, _req, res) => {
 };
 app.use(errorHandler);
 
-const port = process.env.PORT || '8000';
+const port = process.env.PORT || '3000';
 app.set('port', port);
 
 const server = http.createServer(app);
