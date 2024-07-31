@@ -4,9 +4,9 @@ import { handler } from '../utils/handler';
 
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', handler(healthCheck));
 
+// Test APIs
+router.get('/', handler(healthCheck));
 router.get("/test-db",handler(checkDBHealth))
 
 export default router;
