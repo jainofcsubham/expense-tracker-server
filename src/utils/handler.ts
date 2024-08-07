@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { RequestReturnType } from "../types";
+import { Response } from "express";
+import { CustomRequest, RequestReturnType } from "../types";
 
 export const OK: (data: any, status?: number) => RequestReturnType = (
   data,
@@ -11,12 +11,14 @@ export const ERROR: (data: any, status?: number) => RequestReturnType = (
   status = 500
 ) => ({ status, data });
 
-
 export const handler: (
-  callback: (req: Request) => Promise<RequestReturnType>
-) => (req: Request, res: Response) => Promise<void> = (callback) => {
-  return async (req: Request, res: Response) => {
+  callback: (req: CustomRequest) => Promise<RequestReturnType>
+) => (
+  req: CustomRequest,
+  res: Response
+) => Promise<Response<any, Record<string, any>>> = (callback) => {
+  return async (req: CustomRequest, res: Response) => {
     const result = await callback(req);
-    res.status(result.status).send(result.data);
+    return res.status(result.status).send(result.data);
   };
 };

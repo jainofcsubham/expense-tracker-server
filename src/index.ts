@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import http from 'http';
 import { handleError } from './helpers/error';
 import router from './routes/index';
+import { authorizeUser } from './utils/auth';
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
@@ -14,6 +15,10 @@ const app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+if(process.env.APP_ENV && process.env.APP_ENV != "DEV"){
+  app.use(authorizeUser);
+}
 
 app.use('/', router);
 
