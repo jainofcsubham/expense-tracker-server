@@ -17,10 +17,8 @@ export const authorizeUser = async (req:CustomRequest, res: Response, next :Next
             return res.status(401).json({ message: "Invalid token" });
         }
         req.user = ticket;
-        console.log(ticket,"HERE")
         next();
     } catch (error) {
-        console.error("Token verification error:", error);
         return res.status(401).json({ message: "Invalid token" });
     }
 }

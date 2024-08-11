@@ -7,6 +7,7 @@ import http from 'http';
 import { handleError } from './helpers/error';
 import router from './routes/index';
 import { authorizeUser } from './utils/auth';
+import cors from "cors";
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
@@ -15,6 +16,7 @@ const app: express.Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors())
 
 if(process.env.APP_ENV && process.env.APP_ENV != "DEV"){
   app.use(authorizeUser);

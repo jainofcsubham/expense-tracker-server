@@ -10,9 +10,5 @@ export const healthCheck = async (_req: Request) => {
 export const checkDBHealth = async (_req:Request) => {
   const db = await connectToMongo();
   const data = await db.collection<User>('Users').find().toArray();
-  data.forEach(each => {
-    console.log(each)
-    console.log(typeof(each.last_fetch))
-  })
   return OK(data)
 }
