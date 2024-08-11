@@ -2,6 +2,7 @@ import express from 'express';
 import { checkDBHealth, healthCheck } from '../handlers/checkHealth';
 import { handler } from '../utils/handler';
 import { addUser } from "../handlers/user";
+import { getUser } from '../handlers/user';
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.get("/test-db",handler(checkDBHealth))
 
 // User APIs
 router.post("/user",handler(addUser))
+router.get("/user",handler(getUser))
 
 export default router;
