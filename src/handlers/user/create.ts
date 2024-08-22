@@ -10,7 +10,7 @@ export const addUser = async (req: CustomRequest) => {
     try{
         const db = await connectToMongo();
         const userCollection = db.collection<User>(COLLECTIONS.USERS);
-        const filter:Filter<User> = {user_id : req.user.sub} 
+        const filter:Filter<User> = {user_id} 
         const update: UpdateFilter<User> = {
             $setOnInsert : {
                 user_id,
