@@ -5,6 +5,7 @@ import { addUser } from "../handlers/user";
 import { getUser } from '../handlers/user';
 import { addCategory } from '../handlers/category';
 import { readCategory } from '../handlers/category';
+import { addBudget, getBudget } from '../handlers/budget';
 
 const router = express.Router();
 
@@ -21,4 +22,7 @@ router.get("/user",handler(getUser))
 router.post("/category",handler(addCategory))
 router.get("/category",handler(readCategory))
 
+// Budget APIs
+router.post("/budget",handler(addBudget))
+router.get("/budget",handler(getBudget))
 export default router;
